@@ -1,19 +1,30 @@
 import { useState } from "react";
 import axios from "axios";
-import "./App.css";
+import { useParams } from "react-router-dom";
+import "./app.css";
 
 function App() {
   const [formData, setFormData] = useState({
     password: "",
     confirmPassword: "",
   });
-  const [isSuccessfull, setIsSuccessful] = useState(false);
+
+  const [isSuccessful, setIsSuccessful] = useState(false);
+  const { resetToken } = useParams();
+  const [response, setResponse] = useState("");
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+
     try {
-      await axios.post("http://localhost:3000/user/password/reset", formData);
-      setFormData((prev) => ({ ...prev, password: "", confirmPassword: "" }));
+      const response = await axios.post(
+        `http://localhost:3000/user/password/${resetToken}`,
+        formData
+      );
+      setResponse(response.data.message);
+      console.log(response);
+
+      setFormData({ password: "", confirmPassword: "" });
       setIsSuccessful(true);
     } catch (error) {
       console.log(error);
@@ -21,37 +32,38 @@ function App() {
   };
 
   const handleFormInput = (e) => {
-    let { name, value } = e.target;
+    const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   return (
     <>
-      {isSuccessfull ? (
-        <h5>Password Reset Successfull</h5>
+      {isSuccessful ? (
+        <h5>{response}</h5>
       ) : (
-        <form action="" onSubmit={handleFormSubmit}>
-          <label htmlFor="">Reset Password</label>
+        <form onSubmit={handleFormSubmit}>
+          <label>Reset Password</label>
           <br />
+
           <input
-            type="text"
-            name="newPassword"
-            id=""
+            type="password"
+            name="password"
             placeholder="New Password"
             value={formData.password}
             onChange={handleFormInput}
           />
           <br />
+
           <input
-            type="text"
-            name="ConfirmPassword"
-            id=""
+            type="password"
+            name="confirmPassword"
             placeholder="Confirm New Password"
             value={formData.confirmPassword}
             onChange={handleFormInput}
           />
           <br />
-          <button>Submit</button>
+
+          <button type="submit">Submit</button>
         </form>
       )}
     </>

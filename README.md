@@ -14,12 +14,12 @@ Task: Create an API for Signup, Login, Forgot Password using the reset password 
 - Users are able to sign up using unique email only. 👍
 - Users are able to login & get JWT tokens as a success response.👍
 
-- Create an API & Secure flow to forget a password.
-- Users are able to forget their password via reset password link on email.
-- Reset password link should be valid till 5 min from the requested time.
-- Whenever a user clicks on a valid reset password link, it should redirect to the web page with the 2 input fields - (New Password & Confirm Password) and submit button.
-- After clicking on submit, it should update the target user password & Hide the input fields & submit button and show a success message on the screen.
-- Users are able to login with a new password.
+- Create an API & Secure flow to forget a password.👍
+- Users are able to forget their password via reset password link on email.👍
+- Reset password link should be valid till 5 min from the requested time.👍
+- Whenever a user clicks on a valid reset password link, it should redirect to the web page with the 2 input👍 fields - (New Password & Confirm Password) and submit button.👍
+- After clicking on submit, it should update the target user password & Hide the input fields & submit button and show a success message on the screen.👍
+- Users are able to login with a new password.👍
 
 Guidelines:
 

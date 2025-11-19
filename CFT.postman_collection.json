@@ -1,0 +1,132 @@
+{
+	"info": {
+		"_postman_id": "f24ac21f-05ce-49c1-84b3-f9a5e913ac26",
+		"name": "CFT",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26410845"
+	},
+	"item": [
+		{
+			"name": "/",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/login",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/signup",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/user/info/:id\"",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/user/info/691df25f9efadbacada09022",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"user",
+						"info",
+						"691df25f9efadbacada09022"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user/password/:resetToken",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}user/password/:resetToken",
+					"host": [
+						"{{baseURL}}user"
+					],
+					"path": [
+						"password",
+						":resetToken"
+					],
+					"variable": [
+						{
+							"key": "resetToken",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user/password/forget",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"tjodera8944@canvect.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/user/password/forget",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"password",
+						"forget"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "",
+			"type": "default"
+		}
+	]
+}
