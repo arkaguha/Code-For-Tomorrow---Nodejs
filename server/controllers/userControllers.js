@@ -1,6 +1,8 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
+// const nodemailer = require("nodemailer");
+const sendMail = require("../helpers/sendMail");
 
 exports.apiTest = (req, res) => {
   res.json({ message: "Working." });
@@ -68,4 +70,27 @@ exports.getUserInfo = async (req, res) => {
     LastName: userInfo.lastName,
     email: userInfo.email,
   });
+};
+
+exports.postPasswordReset = async (req, res) => {
+  const { token } = req.params;
+};
+
+exports.postForgetPassword = async (req, res) => {
+  const { email } = req.body;
+  const user = await User.findOne({ email });
+  if (!user) return res.json({ message: "user not found" });
+
+  const token = "placeholder";
+  user.resetToken = token;
+  await user.save();
+
+  const resetLink = `http:localhost:5173/user/password/${token}`;
+  await sendMail(
+    user.email,
+    "Pasword Reset",
+    `Link to reset the password: ${resetLink}`
+  );
+
+  res.json({ message: `Link sent at ${user.email}` });
 };

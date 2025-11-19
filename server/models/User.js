@@ -8,6 +8,7 @@ module.exports = mongoose.model(
       lastName: { type: String },
       email: { type: String, required: true, unique: true },
       password: { type: String, required: true },
+      resetToken: { type: String, default: null },
     },
     { collection: "users" }
   )
